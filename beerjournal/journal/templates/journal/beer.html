@@ -1,0 +1,13 @@
+{% extends 'journal/base.html' %}
+{% block content %}
+<p> Beer: {{ beer }}</p>
+<ul>
+    {% for entry in entries %}
+    <li>
+        <p>{{ entry.date }}</p>
+        <p>{{ entry.text }}</p>
+    </li>
+    
+    {% endfor %}
+</ul>
+{% endblock %}

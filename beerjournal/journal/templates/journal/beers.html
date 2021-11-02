@@ -1,0 +1,11 @@
+{% extends 'journal/base.html' %}
+{% block content %}
+<ul>
+    {% for beer in beers %}
+    <li>
+        <a href="{% url 'journal:beer' beer.id %}">{{ beer }}</a>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
