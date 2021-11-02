@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # Your apps: To override default behavior 
     'journal',
+    'users',
 
     # Default Django Apps
     'django.contrib.admin',
