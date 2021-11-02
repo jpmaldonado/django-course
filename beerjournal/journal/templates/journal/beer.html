@@ -1,16 +1,29 @@
 {% extends 'journal/base.html' %}
+
+{% block page_header %}
+<h3>{{ beer }}</h3>
+{% endblock page_header %}
+
 {% block content %}
 <p> Beer: {{ beer }}</p>
 <p>Entries:</p>
 <a href="{% url 'journal:new_entry' beer.id %}">Add new entry</a>
 <ul>
     {% for entry in entries %}
-    <li>
-        <p>{{ entry.date }}</p>
-        <p>{{ entry.text }}</p>
-        <p><a href="{% url 'journal:edit_entry' entry.id %}">Edit entry</a></p>
-    </li>
+
+    <div class="card mb-3">
+        <h4 class="card-header">
+            {{ entry.date_added | date:'M d, Y H:i'}}
+            <small><a href="{% url 'journal:edit_entry' entry.id %}">Edit entry</a></small>
+        </h4>
+        <div class="card-body">
+            {{ entry.text | linebreaks }} 
+        </div>
+    </div>
+
     
+    {% empty %}
+    <p>There are no entries for this beer yet.</p>
     {% endfor %}
 </ul>
 {% endblock %}

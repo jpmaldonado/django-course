@@ -1,4 +1,13 @@
 {% extends 'journal/base.html' %}
+
+{% block page_header %}
+<div class="jumbotron">
+    <h1 class="display-3">Track your favorite beers</h1>
+    <p class="lead">Make your own comments and notes about the beers you try</p>
+    <a class="btn btn-lg btn-primary" href="{% url 'users:register' %}" role="button">Register here!</a>
+</div>
+{% endblock page_header %}
+
 {% block content %}
 <p>This is an app to store information about my beers</p>
 {% endblock content %}

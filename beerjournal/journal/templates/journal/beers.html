@@ -1,13 +1,18 @@
 {% extends 'journal/base.html' %}
+
+{% block page_header %}
+<h1>Beers</h1>
+{% endblock page_header %}
+
 {% block content %}
 <ul>
     {% for beer in beers %}
     <li>
-        <a href="{% url 'journal:beer' beer.id %}">{{ beer }}</a>
+        <h3> <a href="{% url 'journal:beer' beer.id %}">{{ beer }}</a></h3>
     </li>
     {% endfor %}
 </ul>
 
-<a href="{% url 'journal:new_beer' %}">Add a new beer</a>
+<h3><a href="{% url 'journal:new_beer' %}">Add a new beer</a></h3>
 
 {% endblock %}

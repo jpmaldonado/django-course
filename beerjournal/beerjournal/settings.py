@@ -35,6 +35,9 @@ INSTALLED_APPS = [
     'journal',
     'users',
 
+    # Third-party
+    'bootstrap4',
+
     # Default Django Apps
     'django.contrib.admin',
     'django.contrib.auth',
