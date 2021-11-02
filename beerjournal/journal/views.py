@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Beer
-from .forms import BeerForm
+from .models import Beer, Entry
+from .forms import BeerForm, EntryForm
 
 # Create your views here.
 from django.shortcuts import render
@@ -31,3 +31,31 @@ def new_beer(request):
 
     context = {'form':form}    
     return render(request, 'journal/new_beer.html', context)
+
+def new_entry(request, beer_id):
+    beer = Beer.objects.get(id=beer_id)
+    if request.method != 'POST':
+        form = EntryForm()
+    else:
+        form = EntryForm(data=request.POST)
+        if form.is_valid():
+            new_entry = form.save(commit=False) # Grab the data
+            new_entry.beer = beer #Set attribute before saving
+            new_entry.save() #Save
+            return redirect('journal:beer', beer_id=beer_id)
+    context = {'beer':beer, 'form':form}
+    return render(request, 'journal/new_entry.html', context)
+
+def edit_entry(request, entry_id):
+    entry = Entry.objects.get(id=entry_id)
+    beer = entry.beer
+
+    if request.method != 'POST':
+        form = EntryForm(instance=entry)    
+    else:
+        form = EntryForm(instance=entry, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('journal:beer', beer_id = beer.id)
+    context = {'entry':entry, 'beer':beer, 'form':form}
+    return render(request, 'journal/edit_entry.html', context)
