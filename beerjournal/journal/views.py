@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Beer
+from .forms import BeerForm
 
 # Create your views here.
 from django.shortcuts import render
@@ -18,3 +19,15 @@ def beer(request, beer_id):
     entries = beer.entry_set.order_by('-date_added')
     context = {'beer':beer, 'entries':entries}
     return render(request, 'journal/beer.html', context)
+
+def new_beer(request):
+    if request.method != 'POST':
+        form = BeerForm()
+    else:
+        form = BeerForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('journal:beers')
+
+    context = {'form':form}    
+    return render(request, 'journal/new_beer.html', context)

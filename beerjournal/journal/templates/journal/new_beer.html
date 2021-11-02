@@ -1,0 +1,8 @@
+{% extends 'journal/base.html' %}
+{% block content %}
+<form action="{% url 'journal:new_beer' %}" method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+<button name="submit">Add beer</button>
+</form>
+{% endblock %}
