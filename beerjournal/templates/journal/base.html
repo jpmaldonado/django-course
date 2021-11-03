@@ -1,4 +1,5 @@
 {% load bootstrap4 %}
+{% load static %}
 <!doctype html>
 <html lang='en'>
 <head>
@@ -7,6 +8,7 @@
     <title>Beer Journal</title>
     {% bootstrap_css %}
     {% bootstrap_javascript jquery='full' %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>    
 
 
@@ -60,6 +62,13 @@
             {% block content %}{% endblock content %}
         </div>
     </main>
+
+    <!-- JavaScript -->
+    {% block javascript %}
+    <script src="{% static 'js/base.js' %}"></script>
+    {% endblock javascript %}
+
+
 
 </body>
 </html>

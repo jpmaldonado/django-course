@@ -1,7 +1,8 @@
 {% extends 'journal/base.html' %}
-
+{% load static %}
 {% block page_header %}
 <div class="jumbotron">
+    <img class="beer-logo" src="{% static 'img/pyvo.png' %}">
     <h1 class="display-3">Track your favorite beers</h1>
     <p class="lead">Make your own comments and notes about the beers you try</p>
     <a class="btn btn-lg btn-primary" href="{% url 'users:register' %}" role="button">Register here!</a>
